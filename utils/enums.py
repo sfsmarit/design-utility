@@ -1,3 +1,6 @@
+from enum import Enum
+
+
 class Unit(Enum):
     ABS = ("Abs", 1)
     DB = ("dB", 1)
