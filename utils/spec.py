@@ -1,5 +1,5 @@
 import pandas as pd
-from sfsaw.utils.enums import Unit
+from utils.enums import Unit
 
 
 SPEC_TO_UNIT = {
