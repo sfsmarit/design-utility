@@ -1,7 +1,7 @@
 import pandas as pd
 from matplotlib import pyplot as plt
 
-from .spec import Spec
+from utils.spec import Spec
 
 
 class CornerLot:
@@ -22,7 +22,7 @@ class CornerLot:
         # リザルトファイルの読み込み
         if is_mont:
             # 列以外の読み込み
-            self.df_raw = pd.read_csv(result_file, skiprows=4, header=None, encoding='shift-JIS')
+            self.df_raw = pd.read_csv(result_file, skiprows=4, header=None, encoding='utf-8-sig')
 
             # 再度先頭に戻して1行目を読み込み、列名を取得
             result_file.seek(0)
@@ -42,9 +42,10 @@ class CornerLot:
         self.df_raw.columns = self.df_raw.columns.str.upper()
         # 列名から[]を削除
         self.df_raw.columns = [c[:c.index("[")] if "[" in c else c for c in self.df_raw.columns]
-
         # Specに含まれる列だけ残す
         self.df_raw = self.sync(self.df_raw)
+        # 数値に変換
+        self.df_raw = self.df_raw.apply(pd.to_numeric, errors='coerce')
 
         # 合否判定
         self.df_judge = self.df_raw.apply(lambda sr: sr.apply(lambda v: self.is_passed(sr.name, v)))
@@ -113,17 +114,15 @@ class CornerLot:
 
 
 if __name__ == "__main__":
-    if True:
-        result_csv = r"C:\Users\marit\Documents\cornerlot\DG032N\DG032N_cornerlot_char(row).csv"
-        spec_csv = r"C:\Users\marit\Documents\specification\FI\DF033PQ677MD-F5.csv"
-    else:
-        result_csv = r"C:\Users\marit\Documents\python\sfsaw\examples\cornerlot_materials\DE030N_stand_alone_main_cornerlotsim_mont_dat.csv"
-        spec_csv = r"C:\Users\marit\Documents\python\sfsaw\examples\cornerlot_materials\DD065NB875MD-F3MX2.csv"
+    result_csv = r"C:\Users\marit\Documents\cornerlot\DG032N\DG032N_cornerlot_char(row).csv"
+    spec_csv = r"C:\Users\marit\Documents\specification\FI\DF033PQ677MD-F5.csv"
+    is_mont = "mont" in result_csv
 
     freq_range = [0, 1000e6]
     spec_words_to_exlude = ['IR', 'OPB', 'SHB', "RIPPLE"]
 
     cornerlot = CornerLot()
-    cornerlot.load(result_csv, spec_csv)
+    cornerlot.load(result_csv, spec_csv, is_mont=is_mont)
     cornerlot.filter(freq_range[0], freq_range[1], spec_words_to_exlude)
     cornerlot.get_failure_rate_figure()
+    plt.show()
