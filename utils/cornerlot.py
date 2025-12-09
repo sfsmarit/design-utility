@@ -46,6 +46,8 @@ class CornerLot:
         self.df_raw = self.sync(self.df_raw)
         # 数値に変換
         self.df_raw = self.df_raw.apply(pd.to_numeric, errors='coerce')
+        # nan削除
+        self.df_raw = self.df_raw.dropna()
 
         # 合否判定
         self.df_judge = self.df_raw.apply(lambda sr: sr.apply(lambda v: self.is_passed(sr.name, v)))

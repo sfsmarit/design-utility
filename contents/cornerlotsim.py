@@ -11,7 +11,7 @@ st.title("Corner Lot Simulation")
 result_file = st.file_uploader("Monte Calro Result", type="csv")
 spec_file = st.file_uploader("FI Spec", type="csv")
 
-# 周波数スライダー
+# 周波数の範囲選択
 fmin, fmax = st.slider("Frequency range [MHz]", 0, 10000, value=(0, 10000), step=100)
 fmin *= 1e6
 fmax *= 1e6
