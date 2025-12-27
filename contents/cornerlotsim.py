@@ -6,7 +6,9 @@ from utils import CornerLot
 
 st.markdown(
     """
+    ---
     ### Corner Lot Simulation
+    ---
     """
 )
 
