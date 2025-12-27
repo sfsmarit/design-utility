@@ -251,10 +251,10 @@ def plot_pitch_profile(tracks: list[Track]):
 
     # Plot settings
     fig.update_layout(
-        title="Pitch Profile",
-        xaxis_title="X [um]",
+        title="Pitch profile",
+        xaxis_title="x [um]",
         # template="plotly_white",
-        yaxis=dict(side='left', title="Pitch [um]", dtick=0.2),
+        yaxis=dict(side='left', title="L [um]", dtick=0.2),
         yaxis2=dict(side='right', title="DF", dtick=0.1, range=df_range, showgrid=False, overlaying='y'),
         legend=dict(
             orientation="h",

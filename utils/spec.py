@@ -138,9 +138,9 @@ class Spec:
             self.df = self.df[~self.df.index.str.contains('|'.join(words_to_exlude))]
 
     def to_SNSS_string(self, ckt_name: str) -> str:
-        text = "\t------------\t--------\t--------\t-----\t----\t-----\t--------\t--\t----\t-----\n"
+        text = "\t!------------\t--------\t--------\t-----\t----\t-----\t--------\t--\t----\t-----\n"
         text += "\tSPEC {# ITEM,\tF1[MHz],\tF2[MHz],\tRESP,\tVAL,\tUNIT,\tMAX/MIN,\tW,\tERR,\tFUNC}\n"
-        text += "\t------------\t--------\t--------\t-----\t----\t-----\t--------\t--\t----\t-----\n"
+        text += "\t!------------\t--------\t--------\t-----\t----\t-----\t--------\t--\t----\t-----\n"
         for _, row in self.df.iterrows():
             name = row.name
             f1 = row["fstart"]*1e-6
@@ -148,5 +148,5 @@ class Spec:
             resp = f"S({row['po']},{row['pi']},{ckt_name})"
             val, maxmin = (row["min"], "MIN") if row["max"] >= 999 else (row["max"], "MAX")
             unit = row["unit"].value[0]
-            text += f"\tSPEC {{{name},\t{f1},\t{f2},\t{resp},\t{val},\t{unit},\t{maxmin},\t0,\tWORST,\tLIN}}\n"
+            text += f"\tSPEC {{{name},\t{f1:.6g},\t{f2:.6g},\t{resp},\t{val},\t{unit},\t{maxmin},\t0,\tWORST,\tLIN}}\n"
         return text[:-1]

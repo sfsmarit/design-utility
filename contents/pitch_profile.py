@@ -14,7 +14,7 @@ st.markdown(
 
 if True:
     newline = "\r\n"
-    file = st.file_uploader("rsm File", type="rsm")
+    file = st.file_uploader("rsm file", type="rsm")
     if not file:
         st.stop()
     text = file.getvalue().decode("utf-8", errors="replace")
@@ -26,7 +26,7 @@ else:
 
 cols = st.columns(2)
 with cols[0]:
-    mm_conv = st.toggle("MM Conversion", value=True)
+    mm_conv = st.toggle("MM conversion", value=True)
 with cols[1]:
     rsm_download = st.empty()
 
@@ -37,16 +37,16 @@ if mm_conv:
     exp_profile = rsm.convert_MM(exp_profile)
     mm_rsm = rsm.reconstruct_rsm(headers, exp_profile)
     rsm_download.download_button(
-        ":material/download: MM rsm",
+        ":material/download: MM.rsm ",
         data=mm_rsm,
-        file_name=f"MM_test.rsm",
+        file_name=f"MM_{file.name}",
         mime="text/plain",
     )
 
 tracks = rsm.divide_into_tracks(exp_profile)
 
 # Polarity
-left = st.segmented_control("First IDT Polarity", ["HOT", "GND"], default="HOT")
+left = st.segmented_control("Electric potential of the first IDT", ["HOT", "GND"], default="HOT")
 df = rsm.generate_polarity_data(tracks, left)  # type: ignore
 st.markdown("**Polarity**")
 st.dataframe(df)

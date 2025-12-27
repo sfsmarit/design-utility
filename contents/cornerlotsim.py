@@ -13,8 +13,8 @@ st.markdown(
 )
 
 
-result_file = st.file_uploader("Monte Calro Result", type="csv")
-spec_file = st.file_uploader("FI Spec", type="csv")
+result_file = st.file_uploader("Monte Calro result", type="csv")
+spec_file = st.file_uploader("FI spec file", type="csv")
 
 # 周波数の範囲選択
 fmin, fmax = st.slider("Frequency range [MHz]", 0, 10000, value=(0, 10000), step=100)

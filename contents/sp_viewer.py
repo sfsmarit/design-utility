@@ -34,7 +34,7 @@ fstart, fstop = 500, 1000
 fstep = 5
 
 f1, f2 = st.slider(
-    "**Frequency Range [MHz]**",
+    "Frequency range [MHz]",
     fmin, fmax,
     value=(max(fstart, fmin), min(fstop, fmax)),
     step=fstep,
