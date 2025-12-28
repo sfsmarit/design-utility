@@ -3,6 +3,7 @@ import skrf as rf
 from utils import sp
 import tempfile
 from pathlib import Path
+import os
 
 
 st.markdown(
@@ -19,6 +20,7 @@ if not file:
 
 # Load touchstone
 suffix = Path(file.name).suffix
+delete = os.name != "nt"
 with tempfile.NamedTemporaryFile(delete=True, suffix=suffix) as tmp:
     tmp.write(file.getbuffer())
     nw = rf.Network(tmp.name)
