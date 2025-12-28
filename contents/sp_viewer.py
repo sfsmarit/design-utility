@@ -19,9 +19,9 @@ if not file:
 
 # Load touchstone
 suffix = Path(file.name).suffix
-with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
+with tempfile.NamedTemporaryFile(delete=True, suffix=suffix) as tmp:
     tmp.write(file.getbuffer())
-nw = rf.Network(tmp.name)
+    nw = rf.Network(tmp.name)
 
 # Frequency table
 text = sp.generate_freq_table_text(nw)
