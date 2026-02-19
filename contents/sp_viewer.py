@@ -6,13 +6,10 @@ from pathlib import Path
 import os
 
 
-st.markdown(
-    """
-    ---
-    ### S-parameter Viewer
-    ---
-    """
-)
+st.set_page_config("SAW Design Utility", page_icon=":toolbox:", layout="wide")
+st.title("S-parameter Viewer")
+st.divider()
+
 
 file = st.file_uploader("Touchstone")
 if not file:

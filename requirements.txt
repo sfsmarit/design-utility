@@ -2,3 +2,4 @@ pandas
 matplotlib
 plotly
 scikit-rf
+git+https://github.com/sfsmarit/sawlib.git

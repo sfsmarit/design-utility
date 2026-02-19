@@ -3,13 +3,9 @@ import streamlit as st
 from utils import rsm
 
 
-st.markdown(
-    """
-    ---
-    ### Pitch Profile
-    ---    
-    """
-)
+st.set_page_config("SAW Design Utility", page_icon=":toolbox:", layout="wide")
+st.title("RSM Viewer")
+st.divider()
 
 
 if True:

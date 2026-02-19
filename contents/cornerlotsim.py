@@ -4,13 +4,9 @@ from matplotlib import pyplot as plt
 from utils import CornerLot
 
 
-st.markdown(
-    """
-    ---
-    ### Corner Lot Simulation
-    ---
-    """
-)
+st.set_page_config("SAW Design Utility", page_icon=":toolbox:", layout="wide")
+st.title("Corner Lot Simulation")
+st.divider()
 
 
 result_file = st.file_uploader("Monte Calro result", type="csv")
@@ -30,7 +26,7 @@ result_filename = result_file.name if result_file else ""
 is_mont = "mont" in result_filename
 
 # Plot button
-if st.button("Plot Failure Rate", width="stretch"):
+if st.button("Plot failure rate", width="stretch"):
     if result_file and spec_file:
         cornerlot = CornerLot()
         with st.spinner("Calculating..."):

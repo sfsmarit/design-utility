@@ -2,13 +2,9 @@ import streamlit as st
 from utils.spec import Spec
 import re
 
-st.markdown(
-    """
-    ---
-    ### FI Spec
-    ---    
-    """
-)
+st.set_page_config("SAW Design Utility", page_icon=":toolbox:", layout="wide")
+st.title("FI Spec → SNSS")
+st.divider()
 
 
 file = st.file_uploader("FI spec file", type="csv")
