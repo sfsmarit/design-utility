@@ -1,9 +1,9 @@
 import streamlit as st
 import numpy as np
-import sawlib
-import plotly.express as px
 import pandas as pd
+import plotly.express as px
 
+from utils.mpar import Mpar
 from components import mpar_selector
 
 
@@ -25,12 +25,12 @@ eta = st.number_input("DF", value=0.5, step=0.01)
 if mpar_path is None:
     st.stop()
 
-mpar = sawlib.Mpar(mpar_path)
+mpar = Mpar(mpar_path)
 Lmin, Lmax = mpar.pitch_range
 Lstep = 0.2
 L = np.arange(Lmin, Lmax + Lstep + 1e-9, Lstep)
 
-tc_rvf, tc_rk2 = mpar.calc_tc_rvf_rk2(L, eta, tcfs_ppm, tcfp_ppm)
+tc_rvf, tc_rk2 = mpar.tc_rvf_rk2(L, eta, tcfs_ppm, tcfp_ppm)
 
 
 df = pd.DataFrame({
