@@ -25,6 +25,18 @@ eta = st.number_input("DF", value=0.5, step=0.01)
 if mpar_path is None:
     st.stop()
 
+
+st.markdown(
+    """
+    Usage
+    ```
+    rVf = TC_rVf * (T-T0)
+    rK2 = TC_rK2 * (T-T0)
+    ```
+    """
+)
+
+
 mpar = Mpar(mpar_path)
 Lmin, Lmax = mpar.pitch_range
 Lstep = 0.2
