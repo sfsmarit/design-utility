@@ -42,7 +42,7 @@ if mm_conv:
 tracks = rsm.divide_into_tracks(exp_profile)
 
 # Polarity
-left = st.segmented_control("Electric potential of the first IDT", ["HOT", "GND"], default="HOT")
+left = st.segmented_control("Electric potential of the first IDT finger", ["HOT", "GND"], default="HOT")
 df = rsm.generate_polarity_data(tracks, left)  # type: ignore
 st.markdown("**Polarity**")
 st.dataframe(df)

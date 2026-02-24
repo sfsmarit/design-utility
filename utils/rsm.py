@@ -184,11 +184,7 @@ def convert_MM(profile):
 
 def divide_into_tracks(profile):
     tracks: list[Track] = []
-    signs = {
-        "": 0,
-        "+": 1,
-        "-": -1,
-    }
+    signs = {"+": 1, "-": -1}
 
     x_prev = l_prev = 0
     for idt in profile:
@@ -199,7 +195,6 @@ def divide_into_tracks(profile):
             s = ""
         else:
             s = idt[-1].replace("\\", "")
-        sign = signs[s]
 
         if idt[0]:
             tracks.append(Track())
@@ -207,7 +202,7 @@ def divide_into_tracks(profile):
         tracks[-1].x.append(x)
         tracks[-1].l.append(l)
         tracks[-1].df.append(df)
-        tracks[-1].sign.append(sign)
+        tracks[-1].sign.append(signs.get(s, 0))
 
         x_prev = x
         l_prev = l
@@ -291,7 +286,7 @@ def generate_polarity_data(tracks: list[Track], left: str):
 
 if __name__ == "__main__":
     newline = "\n"
-    file = r"C:\Users\marit\Documents\project\DG036N\final_sim\rsm\=BTM__DG036N_standalone@Filter@B71_D1=B71_D1.rsm"
+    file = r"C:\Users\marit\Downloads\=BTM__DG035N_stand_alone_v1_1218@FILTER@B20_DB1A=B20_DB1A.rsm"
     with open(file, encoding="utf-8") as f:
         text = f.read()
 
