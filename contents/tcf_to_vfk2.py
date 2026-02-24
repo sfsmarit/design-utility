@@ -7,7 +7,7 @@ from utils.mpar import Mpar
 from components import mpar_selector
 
 
-st.set_page_config("SAW Design Utility", page_icon=":toolbox:", layout="wide")
+st.set_page_config("SAW Design Utility", page_icon=":toolbox:", layout="centered")
 st.title("TCF → rVf / rK2")
 st.divider()
 

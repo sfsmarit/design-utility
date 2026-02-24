@@ -2,7 +2,7 @@ import streamlit as st
 from utils.spec import Spec
 import re
 
-st.set_page_config("SAW Design Utility", page_icon=":toolbox:", layout="wide")
+st.set_page_config("SAW Design Utility", page_icon=":toolbox:", layout="centered")
 st.title("FI Spec → SNSS")
 st.divider()
 
