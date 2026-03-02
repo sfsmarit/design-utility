@@ -8,8 +8,12 @@ st.set_page_config("SAW Design Utility", page_icon=":toolbox:", layout="centered
 st.title("Corner Lot Simulation")
 st.divider()
 
-
-result_file = st.file_uploader("Monte Calro result : _char(*).xls or mont_dat.csv")
+cols = st.columns(3)
+with cols[0]:
+    st.text("Monte Calro result")
+with cols[1]:
+    st.caption("*_char.xls or *_mont_dat.csv")
+result_file = st.file_uploader("", label_visibility="collapsed")
 spec_file = st.file_uploader("FI spec file", type="csv")
 
 # 周波数の範囲選択
