@@ -1,1 +1,1 @@
-from .cornerlot import CornerLot
+from .corner_lot import CornerLot

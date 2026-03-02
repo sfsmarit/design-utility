@@ -4,12 +4,12 @@ from matplotlib import pyplot as plt
 from utils import CornerLot
 
 
-st.set_page_config("SAW Design Utility", page_icon=":toolbox:", layout="wide")
+st.set_page_config("SAW Design Utility", page_icon=":toolbox:", layout="centered")
 st.title("Corner Lot Simulation")
 st.divider()
 
 
-result_file = st.file_uploader("Monte Calro result", type="csv")
+result_file = st.file_uploader("Monte Calro result : _char(*).xls or mont_dat.csv")
 spec_file = st.file_uploader("FI spec file", type="csv")
 
 # 周波数の範囲選択
@@ -32,8 +32,10 @@ if st.button("Plot failure rate", width="stretch"):
         with st.spinner("Calculating..."):
             cornerlot.load(result_file, spec_file, is_mont=is_mont)
             cornerlot.filter(fmin, fmax, spec_words_to_exclude)
-            fig, axes = cornerlot.plot_failure_rate()
-            st.pyplot(plt)  # type: ignore
+            if cornerlot.plot_failure_rate():
+                st.pyplot(plt)  # type: ignore
+            else:
+                st.success("No fails")
     else:
         if not result_file:
             st.warning("Please upload Monte Calro Result file.")
