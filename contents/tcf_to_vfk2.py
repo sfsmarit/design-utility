@@ -30,8 +30,8 @@ st.markdown(
     """
     Usage
     ```
-    rVf = TC_rVf * (T-T0)
-    rK2 = TC_rK2 * (T-T0)
+    rVf = 1 + TC_rVf * (T-T0)
+    rK2 = 1 + TC_rK2 * (T-T0)
     ```
     """
 )
