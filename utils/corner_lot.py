@@ -77,7 +77,8 @@ class CornerLot:
             return False
 
         # グラフサイズ
-        w, h = 8, 0.5*len(df)
+        w = 8
+        h = max(8, 0.5*len(df))
         fig, ax = plt.subplots(figsize=(w, h))
 
         # ソート
