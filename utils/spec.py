@@ -40,6 +40,7 @@ class Spec:
             Path to the specification CSV file.
         """
         df = pd.read_csv(file, encoding='shift-JIS')
+        df = df.dropna(how='all')  # 全ての値がNaNの行を削除
 
         # トレース定義表の読み込み
         start_idx = df[df.iloc[:, 0] == "Trace Number"].index[0]
